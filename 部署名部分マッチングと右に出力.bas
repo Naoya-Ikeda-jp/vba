@@ -58,7 +58,7 @@ Sub ReplaceWithMatchingValues()
                 dataCell.Offset(0, 3).Value = str
 
         ' マッチング結果のカウントをマッチング結果の右に出力
-        dataCell.Offset(0, 4 + match_cnt).Value = "マッチング数:" + match_cnt
+        dataCell.Offset(0, 4 + match_cnt).Value = "マッチング数:" & match_cnt
     Next dataCell
 
 End Sub
