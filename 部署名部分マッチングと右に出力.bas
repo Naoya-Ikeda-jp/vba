@@ -31,12 +31,19 @@ Sub ReplaceWithMatchingValues()
 
         ' データセット(マッチング用)
         str = dataCell.Value
+        ' カウント
+        match_cnt = 0
+        
         ' 参照シートループ
         For Each refCell In refRange
             ' データセル値に参照セル値が含まれているか確認
             If InStr(str, refCell.Value) > 0 Then
                 ' マッチングフラグ設定
                 matchedValue = refCell.Value
+                ' マッチングしたものを右に出力(H以降)
+                dataCell.Offset(0, 4 + match_cnt).Value = matchedValue
+                ' カウント増加
+                match_cnt = match_cnt + 1
 
                 ' 置換対象文字列取得
                 replaceValue = InStr(str, refCell.Value)
@@ -50,8 +57,8 @@ Sub ReplaceWithMatchingValues()
                 ' マッチング結果をG列に出力
                 dataCell.Offset(0, 3).Value = str
 
-        ' マッチング結果のあまりをH列に出力
-        dataCell.Offset(0, 4).Value = matchedValue
+        ' マッチング結果のカウントをマッチング結果の右に出力
+        dataCell.Offset(0, 4 + match_cnt).Value = "マッチング数:" + match_cnt
     Next dataCell
 
 End Sub
