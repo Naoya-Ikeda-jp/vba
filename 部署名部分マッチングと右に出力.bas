@@ -16,7 +16,7 @@ Sub ReplaceWithMatchingValues()
     Dim matchedValue As String
     Dim startIndex As Long
     Dim endIndex As Long
-    Dim str As String
+    Dim str_rp As String
 
     ' データシート範囲設定
     Set dataRange = dataSheet.Range("D38:D399")
@@ -30,14 +30,14 @@ Sub ReplaceWithMatchingValues()
             matchedValue = ""
 
         ' データセット(マッチング用)
-        str = dataCell.Value
+        str_rp = dataCell.Value
         ' カウント
         match_cnt = 0
         
         ' 参照シートループ
         For Each refCell In refRange
             ' データセル値に参照セル値が含まれているか確認
-            If InStr(str, refCell.Value) > 0 Then
+            If InStr(str_rp, refCell.Value) > 0 Then
                 ' マッチングフラグ設定
                 matchedValue = refCell.Value
                 ' マッチングしたものを右に出力(H以降)
@@ -46,16 +46,16 @@ Sub ReplaceWithMatchingValues()
                 match_cnt = match_cnt + 1
 
                 ' 置換対象文字列取得
-                replaceValue = InStr(str, refCell.Value)
+                replaceValue = InStr(str_rp, refCell.Value)
                 startIndex = replaceValue
                 endIndex = startIndex + Len(refCell.Value) - 1
 
                 ' データ保持(マッチング用)
-                str = Replace(str, Mid(str, startIndex, endIndex), refCell.Offset(0, 2).Value)
+                str_rp = Replace(str_rp, Mid(str_rp, startIndex, endIndex - startIndex + 1), refCell.Offset(0, 2).Value)
             End If
         Next refCell
                 ' マッチング結果をG列に出力
-                dataCell.Offset(0, 3).Value = str
+                dataCell.Offset(0, 3).Value = str_rp
 
         ' マッチング結果のカウントをマッチング結果の右に出力
         dataCell.Offset(0, 4 + match_cnt).Value = "マッチング数:" & match_cnt
