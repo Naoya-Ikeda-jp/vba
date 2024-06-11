@@ -1,0 +1,5 @@
+*.sql linguist-detectable=true
+*.sql linguist-language=sql
+*.bas diff=sjis
+*.sql diff=sjis
+*.java diff=sjis
