@@ -36,7 +36,7 @@ Sub ExtractGreenRows()
                     destWs.Cells(destRow, lastCol + 2).Value = ws.Name
                     destWs.Cells(destRow, lastCol + 1).Value = ws.Index
                     destRow = destRow + 1
-                    Exit For ' 行全体が条件に合う場合は次の行へ
+'                    Exit For ' 行全体が条件に合う場合は次の行へ
                 End If
             Next cell
         End If
@@ -75,7 +75,7 @@ Sub ExtractBlueRows()
                     destWs.Cells(destRow, lastCol + 2).Value = ws.Name
                     destWs.Cells(destRow, lastCol + 1).Value = ws.Index
                     destRow = destRow + 1
-                    Exit For ' 行全体が条件に合う場合は次の行へ
+'                    Exit For ' 行全体が条件に合う場合は次の行へ
                     End If
             Next cell
         End If
